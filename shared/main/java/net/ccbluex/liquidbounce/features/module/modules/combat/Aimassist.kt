@@ -21,7 +21,7 @@ import net.ccbluex.liquidbounce.value.FloatValue
 import kotlin.random.Random
 
 @ModuleInfo(name = "AimAssist", description = "Automatically faces selected entities around you.", category = ModuleCategory.COMBAT)
-class Aimbot : Module() {
+class AimAssist : Module() {
 
     private val rangeValue = FloatValue("Range", 4.4F, 1F, 8F)
     private val YturnSpeedValue = FloatValue("YawTurnSpeed", 2F, 1F, 180F)
