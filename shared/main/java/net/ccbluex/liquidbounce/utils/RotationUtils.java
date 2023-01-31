@@ -257,8 +257,8 @@ public final class RotationUtils extends MinecraftInstance implements Listenable
         final float pitchDifference = getAngleDifference(targetRotation.getPitch(), currentRotation.getPitch());
 
         return new Rotation(
-                currentRotation.getYaw() + (yawDifference > turnSpeed ? YturnSpeed : Math.max(yawDifference, -turnSpeed)),
-                currentRotation.getPitch() + (pitchDifference > turnSpeed ? PturnSpeed : Math.max(pitchDifference, -turnSpeed)
+                currentRotation.getYaw() + (yawDifference > YturnSpeed ? YturnSpeed : Math.max(yawDifference, -turnSpeed)),
+                currentRotation.getPitch() + (pitchDifference > PturnSpeed ? PturnSpeed : Math.max(pitchDifference, -turnSpeed)
         ));
     }
 
