@@ -241,13 +241,24 @@ public final class RotationUtils extends MinecraftInstance implements Listenable
      * @return limited rotation
      */
     @NotNull
-    public static Rotation limitAngleChange(final Rotation currentRotation, final Rotation targetRotation, final float YturnSpeed, final float PturnSpeed) {
+    public static Rotation limitAngleChange2(final Rotation currentRotation, final Rotation targetRotation, final float YturnSpeed, final float PturnSpeed) {
         final float yawDifference = getAngleDifference(targetRotation.getYaw(), currentRotation.getYaw());
         final float pitchDifference = getAngleDifference(targetRotation.getPitch(), currentRotation.getPitch());
 
         return new Rotation(
                 currentRotation.getYaw() + (yawDifference > YturnSpeed ? YturnSpeed : Math.max(yawDifference, -YturnSpeed)),
                 currentRotation.getPitch() + (pitchDifference > PturnSpeed ? PturnSpeed : Math.max(pitchDifference, -PturnSpeed)
+        ));
+    }
+	
+    @NotNull
+    public static Rotation limitAngleChange(final Rotation currentRotation, final Rotation targetRotation, final float turnSpeed) {
+        final float yawDifference = getAngleDifference(targetRotation.getYaw(), currentRotation.getYaw());
+        final float pitchDifference = getAngleDifference(targetRotation.getPitch(), currentRotation.getPitch());
+
+        return new Rotation(
+                currentRotation.getYaw() + (yawDifference > turnSpeed ? YturnSpeed : Math.max(yawDifference, -turnSpeed)),
+                currentRotation.getPitch() + (pitchDifference > turnSpeed ? PturnSpeed : Math.max(pitchDifference, -turnSpeed)
         ));
     }
 

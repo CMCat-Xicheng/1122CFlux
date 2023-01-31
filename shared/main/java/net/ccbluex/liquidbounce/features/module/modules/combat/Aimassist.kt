@@ -55,7 +55,7 @@ class Aimbot : Module() {
         if (!lockValue.get() && RotationUtils.isFaced(entity, range.toDouble()))
             return
 
-        val rotation = RotationUtils.limitAngleChange(
+        val rotation = RotationUtils.limitAngleChange2(
                 Rotation(thePlayer.rotationYaw, thePlayer.rotationPitch),
                 if (centerValue.get())
                     RotationUtils.toRotation(RotationUtils.getCenter(entity.entityBoundingBox), true)
