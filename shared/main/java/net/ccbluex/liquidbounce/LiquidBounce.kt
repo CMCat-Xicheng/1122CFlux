@@ -41,10 +41,10 @@ import kotlin.concurrent.thread
 object LiquidBounce {
 
     // Client information
-    const val CLIENT_NAME = "LiquidBounce"
-    const val CLIENT_VERSION = 73
+    const val CLIENT_NAME = "CFlux"
+    const val CLIENT_VERSION = 2
     const val IN_DEV = true
-    const val CLIENT_CREATOR = "CCBlueX"
+    const val CLIENT_CREATOR = "CMCat"
     const val MINECRAFT_VERSION = Backend.MINECRAFT_VERSION
     const val CLIENT_CLOUD = "https://cloud.liquidbounce.net/LiquidBounce"
 

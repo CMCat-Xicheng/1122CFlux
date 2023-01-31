@@ -39,6 +39,7 @@ class ModuleManager : Listenable {
         ClientUtils.getLogger().info("[ModuleManager] Loading modules...")
 
         registerModules(
+				AimAssist::class.java,
                 AutoArmor::class.java,
                 AutoBow::class.java,
                 AutoLeave::class.java,
