@@ -55,8 +55,8 @@ import java.nio.ByteBuffer;
 @SideOnly(Side.CLIENT)
 public abstract class MixinMinecraft {
 
-    //@Shadow
-    //public GuiScreen currentScreen;
+    @Shadow
+    public GuiScreen currentScreen;
 
     @Shadow
     public boolean skipRenderWorld;
@@ -115,18 +115,18 @@ public abstract class MixinMinecraft {
         Display.setTitle(LiquidBounce.CLIENT_NAME + " b" + LiquidBounce.CLIENT_VERSION + " | " + LiquidBounce.MINECRAFT_VERSION + (LiquidBounce.IN_DEV ? " | DEVELOPMENT BUILD" : ""));
     }
 
-    //@Inject(method = "displayGuiScreen", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;currentScreen:Lnet/minecraft/client/gui/GuiScreen;", shift = At.Shift.AFTER))
-    //private void displayGuiScreen(CallbackInfo callbackInfo) {
-    //    if (currentScreen instanceof net.minecraft.client.gui.GuiMainMenu || (currentScreen != null && currentScreen.getClass().getName().startsWith("net.labymod") && currentScreen.getClass().getSimpleName().equals("ModGuiMainMenu"))) {
-    //        currentScreen = GuiScreenImplKt.unwrap(LiquidBounce.wrapper.getClassProvider().wrapGuiScreen(new GuiMainMenu()));
-//
-    //        ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
-    //        currentScreen.setWorldAndResolution(Minecraft.getMinecraft(), scaledResolution.getScaledWidth(), scaledResolution.getScaledHeight());
-    //        skipRenderWorld = false;
-     //   }
-//
-     //   LiquidBounce.eventManager.callEvent(new ScreenEvent(currentScreen == null ? null : GuiScreenImplKt.wrap(currentScreen)));
-    //}
+    @Inject(method = "displayGuiScreen", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;currentScreen:Lnet/minecraft/client/gui/GuiScreen;", shift = At.Shift.AFTER))
+    private void displayGuiScreen(CallbackInfo callbackInfo) {
+        if (currentScreen instanceof net.minecraft.client.gui.GuiMainMenu || (currentScreen != null && currentScreen.getClass().getName().startsWith("net.labymod") && currentScreen.getClass().getSimpleName().equals("ModGuiMainMenu"))) {
+            currentScreen = GuiScreenImplKt.unwrap(LiquidBounce.wrapper.getClassProvider().wrapGuiScreen(new GuiMainMenu()));
+
+            ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
+            currentScreen.setWorldAndResolution(Minecraft.getMinecraft(), scaledResolution.getScaledWidth(), scaledResolution.getScaledHeight());
+            skipRenderWorld = false;
+        }
+
+        LiquidBounce.eventManager.callEvent(new ScreenEvent(currentScreen == null ? null : GuiScreenImplKt.wrap(currentScreen)));
+    }
 
     @Inject(method = "runGameLoop", at = @At("HEAD"))
     private void runGameLoop(final CallbackInfo callbackInfo) {
