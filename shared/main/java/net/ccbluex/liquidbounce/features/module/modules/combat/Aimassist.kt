@@ -64,6 +64,7 @@ class AimAssist : Module() {
                             false, range).rotation,
                 (YturnSpeedValue.get()).toFloat() ,(PturnSpeedValue.get()).toFloat()
         )
+	
 
         rotation.toPlayer(thePlayer)
 
